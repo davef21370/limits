@@ -53,13 +53,13 @@ inFile.close()
 
 print "Working.....\n"
 
-lx = ly = lz = 999999999.9
-hx = hy = hz = -999999999.9
+lx = ly = lz = lf = 999999999.9
+hx = hy = hz = hf = -999999999.9
 
 for line in strList:
     for code in line.split(" "):
         try:
-            if code[0] in "XYZIJK":
+            if code[0] in "XYZF":
                 value = float(code[1:])
                 if code[0] == "X":
                     if value > hx: hx = value
@@ -70,12 +70,16 @@ for line in strList:
                 if code[0] == "Z":
                     if value > hz: hz = value
                     if value < lz: lz = value
+                if code[0] == "F":
+                    if value > hf: hf = value
+                    if value < lf: lf = value
         except:
             pass
 
 print "X", lx, "to", hx
 print "Y", ly, "to", hy
-print "Z", lz, "to", hz, "\n"
+print "Z", lz, "to", hz
+print "F", lf, "to", hf, "\n"
 
 print "Done.\n"
 
